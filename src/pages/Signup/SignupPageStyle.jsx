@@ -114,4 +114,5 @@ export const ButtonCreateCount = styled.button`
   font-size: 16px;
   width: 100%;
   margin: 1.5rem;
+  cursor: pointer;
 `;

@@ -85,6 +85,7 @@ export const ButtonsContainer = styled.div`
     font-family: "Noto Sans", sans-serif;
     font-weight: 700;
     font-size: 16px;
+    cursor: pointer;
   }
 
   .ButtonContinue {
@@ -117,4 +118,3 @@ export const ColoredLine = styled.hr`
   height: 1px;
   border: none;
 `;
-
