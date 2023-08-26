@@ -2,8 +2,12 @@ import ImgLike from "../../../src/assets/ImgLike.svg"
 import ImgDislike from "../../../src/assets/ImgDislike.svg"
 import ImgComment from "../../../src/assets/ImgComment.svg"
 import { ContainerPosts, SectionLikeDislikeComment, SectionPost, TitleAuthor } from "./PostsStyle"
+import { goToComments } from "../../routes/coordinator"
+import { useNavigate } from "react-router-dom"
 
 export default function Post () {
+    const navigate = useNavigate()
+    
     return(
         <ContainerPosts>
             <TitleAuthor>Enviado por: labaluno83</TitleAuthor>
@@ -15,7 +19,7 @@ export default function Post () {
                     <button><img src={ImgDislike} alt="Dar dislike na postagem" /></button>
                 </div>
                 <div className="Comments">
-                    <button><img src={ImgComment} alt="Comentários da postagem" /></button>
+                    <button onClick={() => goToComments(navigate)} ><img src={ImgComment} alt="Comentários da postagem" /></button>
                     <p className="TotalComments">132</p>
                 </div>
             </SectionLikeDislikeComment>
