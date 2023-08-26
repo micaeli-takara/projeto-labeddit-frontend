@@ -7,10 +7,15 @@ import {
   Logo,
   Main,
 } from "./LoginPageStyle";
+import { goToPosts, goToSignup } from '../../routes/coordinator';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { BASE_URL } from '../../constants/url';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -19,6 +24,10 @@ export default function LoginPage() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+
+  axios.post(`${BASE_URL}/users/login`, body);
+  
+  const [form, onChangeInputs,cleanInputs] = useForm
 
   //   const [hora, setHora] = useState(new Date());
 
@@ -59,9 +68,9 @@ export default function LoginPage() {
         </div>
       </Form>
       <ButtonsContainer>
-        <button className="ButtonContinue">Continuar</button>
+        <button className="ButtonContinue" onClick={() => goToPosts(navigate)}>Continuar</button>
         <ColoredLine />
-        <button className="ButtonCreateCount">Criar uma conta!</button>
+        <button className="ButtonCreateCount" onClick={() => goToSignup(navigate)}>Criar uma conta!</button>
       </ButtonsContainer>
     </Main>
   );
