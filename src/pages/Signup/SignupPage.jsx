@@ -28,7 +28,7 @@ export default function SignupPage() {
     setPassword(event.target.value);
   };
 
-  axios.post(`${BASE_URL}/users/signup`, body);
+  // axios.post(`${BASE_URL}/users/signup`, body);
 
   return (
     <div>

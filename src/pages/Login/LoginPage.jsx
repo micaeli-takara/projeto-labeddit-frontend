@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import logo from "../../assets/LogoLabeddit.svg";
 import {
   ButtonsContainer,
@@ -7,71 +6,79 @@ import {
   Logo,
   Main,
 } from "./LoginPageStyle";
-import { goToPosts, goToSignup } from '../../routes/coordinator';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { BASE_URL } from '../../constants/url';
+import { useNavigate } from "react-router-dom";
+import useForm from "../../hooks/use-form";
+import { goToPosts } from "../../routes/coordinator";
+import { BASE_URL} from "../../constants/url";
+import axios from "axios";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { form, onChange, cleanForm } = useForm({
+    email: "",
+    password: "",
+  });
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const Login = async (event) => {
+    event.preventDefault();
+    cleanForm();
+    try {
+      const body = {
+        email: form.email,
+        password: form.password
+      }
+
+      await axios.post(`${BASE_URL}/users/login`, body);
+      // window.localStorage.setItem(TOKEN_NAME, response.data.token)
+      goToPosts(navigate)
+    } catch (error) {
+      console.error(error?.response?.data);
+      window.alert(error?.response?.data)
+    }
   };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  axios.post(`${BASE_URL}/users/login`, body);
-  
-  const [form, onChangeInputs,cleanInputs] = useForm
-
-  //   const [hora, setHora] = useState(new Date());
-
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     setHora(new Date());
-  //   }, 1000);
-
-  //   return () => clearInterval(intervalId);
-  // }, []);
-
-  // const formatarNumero = (numero) => {
-  //   return numero < 10 ? `0${numero}` : numero;
-  // };
-
-  // const horas = formatarNumero(hora.getHours());
-  // const minutos = formatarNumero(hora.getMinutes());
 
   return (
     <Main>
-       {/* <div className="relogio">
-      <h1>Relógio React</h1>
-      <p>{`${horas}:${minutos}`}</p>
-    </div> */}
-
       <Logo>
         <img src={logo} alt="Logo da Labeddit" />
         <p>O projeto de rede social da Labenu</p>
       </Logo>
-      <Form>
+      <Form onSubmit={Login}>
         <div className="input-container">
-          <input type="email" value={email} onChange={handleEmailChange} />
-          <label className={email ? 'active' : ''}>E-mail</label>
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={onChange}
+            required
+          />
+          <label className={form.email ? "active" : ""}>E-mail</label>
         </div>
         <div className="input-container">
-          <input type="password" value={password} onChange={handlePasswordChange} />
-          <label className={password ? 'active' : ''}>Senha</label>
+          <input
+            name="password"
+            type="urrent-password"
+            value={form.password}
+            onChange={onChange}
+            required
+          />
+          <label className={form.password ? "active" : ""}>Senha</label>
         </div>
+        <ButtonsContainer>
+          <button
+            className="ButtonContinue"
+          >
+            Continuar
+          </button>
+          <ColoredLine />
+          {/* <button
+            className="ButtonCreateCount"
+            onClick={() => goToSignup(navigate)}
+          >
+            Criar uma conta!
+          </button> */}
+        </ButtonsContainer>
       </Form>
-      <ButtonsContainer>
-        <button className="ButtonContinue" onClick={() => goToPosts(navigate)}>Continuar</button>
-        <ColoredLine />
-        <button className="ButtonCreateCount" onClick={() => goToSignup(navigate)}>Criar uma conta!</button>
-      </ButtonsContainer>
     </Main>
   );
 }

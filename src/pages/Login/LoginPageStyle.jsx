@@ -76,8 +76,7 @@ export const ButtonsContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
-  width: 100vw;
-  padding: 0 2rem 0 2rem;
+  padding-top: 2rem;
 
   button {
     height: 48px;
