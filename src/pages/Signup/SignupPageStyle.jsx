@@ -52,9 +52,8 @@ export const Form = styled.form`
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  width: 100%;
 
-  input {
+  .input {
     border-radius: 4px;
     border: #d5d8de solid 1px;
     height: 4rem;
@@ -112,7 +111,6 @@ export const ButtonCreateCount = styled.button`
   font-family: "Noto Sans", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  width: 100%;
-  margin: 1.5rem;
   cursor: pointer;
+  margin-top: 1rem;
 `;

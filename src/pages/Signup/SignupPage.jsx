@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ContainerAutorization,
   Form,
@@ -8,27 +7,37 @@ import {
   Heading,
 } from "./SignupPageStyle";
 import { useNavigate } from "react-router-dom";
-import { goToLogin } from "../../routes/coordinator";
+import { goToPosts } from "../../routes/coordinator";
+import axios from "axios";
+import useForm from "../../hooks/use-form";
+import { BASE_URL } from "../../constants/url";
 
 export default function SignupPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { form, onChange, cleanForm } = useForm({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const Signup = async (event) => {
+  event.preventDefault();
+    try {
+      const body = {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      };
+
+      const response = await axios.post(`${BASE_URL}/users/signup`, body);
+      window.localStorage.setItem("token", response.data.output.token);
+      cleanForm();
+      goToPosts(navigate);
+    } catch (error) {
+      console.error(error?.response?.data);
+      window.alert(error?.response?.data);
+    }
   };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  // axios.post(`${BASE_URL}/users/signup`, body);
 
   return (
     <div>
@@ -40,32 +49,58 @@ export default function SignupPage() {
             </strong>
           </TitleSignup>
         </div>
-        <Form>
+        <Form onSubmit={Signup}>
           <div className="input-container">
-            <input type="name" value={name} onChange={handleNameChange} />
-            <label className={name ? "active" : ""}>Apelido</label>
+            <input
+            className="input"
+              name="name"
+              type="name"
+              value={form.name}
+              onChange={onChange}
+              required
+            />
+            <label className={form.name ? "active" : ""}>Apelido</label>
           </div>
           <div className="input-container">
-            <input type="email" value={email} onChange={handleEmailChange} />
-            <label className={email ? "active" : ""}>E-mail</label>
+            <input
+            className="input"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={onChange}
+              required
+            />
+            <label className={form.email ? "active" : ""}>E-mail</label>
           </div>
           <div className="input-container">
-            <input type="password" value={password} onChange={handlePasswordChange} />
-            <label className={password ? "active" : ""}>Senha</label>
+            <input
+            className="input"
+              name="password"
+              type="urrent-password"
+              value={form.password}
+              onChange={onChange}
+              required
+            />
+            <label className={form.password ? "active" : ""}>Senha</label>
           </div>
+
+          <ContainerAutorization>
+            <p className="TextAuthorization">
+              Ao continuar, você concorda com o nosso
+              <span> Contrato de usuário </span> e nossa
+              <span> Política de Privacidade </span>
+            </p>
+            <div className="ContainerCheckbox">
+              <input className="checkbox" type="checkbox" />
+              <p>
+                Eu concordo em receber emails sobre coisas legais no Labeddit
+              </p>
+            </div>
+          </ContainerAutorization>
+          <ButtonCreateCount>
+            Cadastrar
+          </ButtonCreateCount>
         </Form>
-        <ContainerAutorization>
-          <p className="TextAuthorization">
-            Ao continuar, você concorda com o nosso
-            <span> Contrato de usuário </span> e nossa
-            <span> Política de Privacidade </span>
-          </p>
-          <div className="ContainerCheckbox">
-            <input type="checkbox" />
-            <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
-          </div>
-        </ContainerAutorization>
-        <ButtonCreateCount onClick={() => goToLogin(navigate)}>Cadastrar</ButtonCreateCount>
       </Main>
     </div>
   );
