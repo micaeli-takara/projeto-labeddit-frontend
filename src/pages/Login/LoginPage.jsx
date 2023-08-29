@@ -8,7 +8,7 @@ import {
 } from "./LoginPageStyle";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/use-form";
-import { goToPosts } from "../../routes/coordinator";
+import { goToPosts, goToSignup } from "../../routes/coordinator";
 import { BASE_URL} from "../../constants/url";
 import axios from "axios";
 
@@ -28,8 +28,9 @@ export default function LoginPage() {
         password: form.password
       }
 
-      await axios.post(`${BASE_URL}/users/login`, body);
-      // window.localStorage.setItem(TOKEN_NAME, response.data.token)
+      const response = await axios.post(`${BASE_URL}/users/login`, body);
+      window.localStorage.setItem("token", response.data.output.token)
+      console.log(response.data)
       goToPosts(navigate)
     } catch (error) {
       console.error(error?.response?.data);
@@ -57,7 +58,7 @@ export default function LoginPage() {
         <div className="input-container">
           <input
             name="password"
-            type="urrent-password"
+            type="password"
             value={form.password}
             onChange={onChange}
             required
@@ -66,17 +67,18 @@ export default function LoginPage() {
         </div>
         <ButtonsContainer>
           <button
+            type="submit"
             className="ButtonContinue"
           >
             Continuar
           </button>
           <ColoredLine />
-          {/* <button
+          <button
             className="ButtonCreateCount"
             onClick={() => goToSignup(navigate)}
           >
             Criar uma conta!
-          </button> */}
+          </button>
         </ButtonsContainer>
       </Form>
     </Main>

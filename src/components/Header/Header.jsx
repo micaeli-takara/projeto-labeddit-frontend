@@ -1,4 +1,4 @@
-import { ButtonLogin, ContainerHeader, ContainerHeaderComments, ImgLogo } from "./HeaderStyle";
+import { ButtonLogin, ContainerHeader, ContainerHeaderComments } from "./HeaderStyle";
 import LogoLabedditMini from "../../../src/assets/LogoLabedditMini.svg"
 import { useLocation, useNavigate } from "react-router-dom";
 import ImgBackPosts from "../../../src/assets/ImgBackPost.svg"
@@ -8,7 +8,12 @@ export default function Header() {
     const navigate = useNavigate()
     const location = useLocation()
 
-    if (location.pathname == "/signup") {
+    const Logout = () => {
+        window.localStorage.removeItem("token");
+        goToLogin(navigate);
+    }
+
+    if (location.pathname === "/signup") {
         return (
             <ContainerHeader>
                 <div>
@@ -17,21 +22,21 @@ export default function Header() {
                 <ButtonLogin onClick={() => goToLogin(navigate)}>Entrar</ButtonLogin>
             </ContainerHeader>
         )
-    } else if (location.pathname == "/posts") {
+    } else if (location.pathname === "/posts") {
         return (
             <ContainerHeader>
                 <div>
                     <img src={LogoLabedditMini} alt="Logo da Labeddit" />
                 </div>
-                <ButtonLogin onClick={() => goToLogin(navigate)}>Logout</ButtonLogin>
+                <ButtonLogin onClick={Logout}>Logout</ButtonLogin>
             </ContainerHeader>
         )
-    } else if (location.pathname == "/posts/:id/comments") {
+    } else if (location.pathname === "/posts/:id/comments") {
         return (
             <ContainerHeaderComments>
                 <button onClick={() => goToPosts(navigate)}><img src={ImgBackPosts} alt="Voltar para a página de postagens" /></button>
                 <img src={LogoLabedditMini} alt="Logo da Labeddit" />
-                <button onClick={() => goToLogin(navigate)}>Logout</button>
+                <button onClick={Logout}>Logout</button>
             </ContainerHeaderComments>
         )
     }

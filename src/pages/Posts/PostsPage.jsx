@@ -1,7 +1,10 @@
 import Post from "../../components/Posts/Post";
+import useProtectedPage from "../../hooks/useProtectedPage";
 import { ButtonPost, ContainerPost, ContainerPostPage, ColoredLine} from "./PostsPageStyle";
 
 export default function PostsPage() {
+    useProtectedPage()
+
     return (
         <ContainerPostPage>
             <ContainerPost>
