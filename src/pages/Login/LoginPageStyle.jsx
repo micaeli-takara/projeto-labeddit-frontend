@@ -52,6 +52,9 @@ export const Form = styled.form`
     height: 4rem;
     width: 100%;
     padding: 1rem;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
   }
 
   .input-container label {
@@ -66,7 +69,7 @@ export const Form = styled.form`
   }
 
   .input-container label.active {
-    bottom: 3.8rem;
+    bottom: 3.7rem;
     font-size: 12px;
   }
 `;
