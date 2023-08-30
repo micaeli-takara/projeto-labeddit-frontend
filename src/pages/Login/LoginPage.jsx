@@ -7,7 +7,7 @@ import {
   Main,
 } from "./LoginPageStyle";
 import { useNavigate } from "react-router-dom";
-import useForm from "../../hooks/use-form";
+import useForm from "../../hooks/useForm";
 import { goToPosts, goToSignup } from "../../routes/coordinator";
 import { BASE_URL} from "../../constants/url";
 import axios from "axios";
@@ -21,17 +21,16 @@ export default function LoginPage() {
 
   const Login = async (event) => {
     event.preventDefault();
-    cleanForm();
     try {
       const body = {
         email: form.email,
         password: form.password
       }
-
       const response = await axios.post(`${BASE_URL}/users/login`, body);
       window.localStorage.setItem("token", response.data.output.token)
-      console.log(response.data)
+      cleanForm();
       goToPosts(navigate)
+
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
