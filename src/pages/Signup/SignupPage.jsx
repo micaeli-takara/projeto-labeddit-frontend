@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { goToPosts } from "../../routes/coordinator";
 import axios from "axios";
-import useForm from "../../hooks/use-form";
+import useForm from "../../hooks/useForm";
 import { BASE_URL } from "../../constants/url";
 
 export default function SignupPage() {
@@ -28,11 +28,11 @@ export default function SignupPage() {
         email: form.email,
         password: form.password,
       };
-
       const response = await axios.post(`${BASE_URL}/users/signup`, body);
       window.localStorage.setItem("token", response.data.output.token);
       cleanForm();
       goToPosts(navigate);
+      
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data);

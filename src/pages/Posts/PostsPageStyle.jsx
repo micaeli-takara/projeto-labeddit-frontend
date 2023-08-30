@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerPostPage = styled.div`
+export const ContainerPostPage = styled.form`
     margin: 2.13rem;
     display: flex;
     flex-direction: column;

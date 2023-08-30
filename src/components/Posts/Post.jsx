@@ -5,22 +5,22 @@ import { ContainerPosts, SectionLikeDislikeComment, SectionPost, TitleAuthor } f
 import { goToComments } from "../../routes/coordinator"
 import { useNavigate } from "react-router-dom"
 
-export default function Post () {
+export default function Post ({postagens}) {
     const navigate = useNavigate()
-    
-    return(
+ 
+    return( 
         <ContainerPosts>
-            <TitleAuthor>Enviado por: labaluno83</TitleAuthor>
-            <SectionPost>Porque a maioria dos desenvolvedores usam Linux? ou as empresas de tecnologia usam Linux ?</SectionPost>
+            <TitleAuthor>Enviado por: {postagens.creator.name}</TitleAuthor>
+            <SectionPost>{postagens.content}</SectionPost>
             <SectionLikeDislikeComment>
                 <div className="LikeDislike">
                     <button><img src={ImgLike} alt="Dar like na postagem" /></button>
-                    <p className="TotalLikes">1.2k</p>
+                    <p className="TotalLikes">{postagens.likes}</p>
                     <button><img src={ImgDislike} alt="Dar dislike na postagem" /></button>
                 </div>
                 <div className="Comments">
                     <button onClick={() => goToComments(navigate)} ><img src={ImgComment} alt="Comentários da postagem" /></button>
-                    <p className="TotalComments">132</p>
+                    <p className="TotalComments">{postagens.commentsPost}</p>
                 </div>
             </SectionLikeDislikeComment>
         </ContainerPosts>
