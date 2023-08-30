@@ -14,7 +14,7 @@ export default function Router() {
                 <Route path="/" element={<LoginPage/>} />
                 <Route path="/signup" element={<SignupPage/>}/>
                 <Route path="/posts" element={<PostsPage/>} />
-                <Route path="/posts/:id/comments" element={<CommentsPage/>}/>
+                <Route path="/comments/:id/posts" element={<CommentsPage/>}/>
                 <Route path="*" element={<NotFoundPage/>} />
             </Routes>
         </BrowserRouter>

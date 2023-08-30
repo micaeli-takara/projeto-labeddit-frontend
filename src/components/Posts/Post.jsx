@@ -15,14 +15,14 @@ export default function Post({ postagens }) {
 
   return (
     <ContainerPosts>
-      <TitleAuthor>Enviado por: {postagens.creator.name}</TitleAuthor>
-      <SectionPost>{postagens.content}</SectionPost>
+     <TitleAuthor>Enviado por: {postagens?.creator.name}</TitleAuthor>
+      <SectionPost>{postagens?.content}</SectionPost>
       <SectionLikeDislikeComment>
         <div className="LikeDislike">
           <button>
             <img src={ImgLike} alt="Dar like na postagem" />
           </button>
-          <p className="TotalLikes">{postagens.likes}</p>
+          <p className="TotalLikes">{postagens?.likes}</p>
           <button>
             <img src={ImgDislike} alt="Dar dislike na postagem" />
           </button>
@@ -31,7 +31,7 @@ export default function Post({ postagens }) {
           <button onClick={() => goToComments(navigate, postagens.id)}>
             <img src={ImgComment} alt="Comentários da postagem" />
           </button>
-          <p className="TotalComments">{postagens.commentsPost}</p>
+          <p className="TotalComments">{postagens?.commentsPost}</p>
         </div>
       </SectionLikeDislikeComment>
     </ContainerPosts>

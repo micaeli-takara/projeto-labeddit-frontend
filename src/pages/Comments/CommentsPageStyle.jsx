@@ -1,29 +1,35 @@
 import styled from "styled-components";
 
 export const ContainerCommentsPage = styled.div`
-    margin: 2.13rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  margin: 2.13rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 `;
 
-export const ContainerComment = styled.div`
-    background-color: #EDEDED;
+export const ContainerComment = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .ContainerComment {
+    background-color: #ededed;
     border: none;
     height: 131px;
     border-radius: 12px;
-    background: #EDEDED;
+    background: #ededed;
+  }
 
-    input{
-        border: none;
-        background-color: #EDEDED;
-        padding: 1.5rem;
-        border-radius: 12px;
-        color: #6F6F6F;
-        font-family: IBM Plex Sans;
-        font-size: 18px;
-        font-weight: 400;
-    }
+  input {
+    border: none;
+    background-color: #ededed;
+    padding: 1.5rem;
+    border-radius: 12px;
+    color: #6f6f6f;
+    font-family: IBM Plex Sans;
+    font-size: 18px;
+    font-weight: 400;
+  }
 `;
 
 export const ButtonPost = styled.button`
