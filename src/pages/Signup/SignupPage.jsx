@@ -34,8 +34,8 @@ export default function SignupPage() {
       goToPosts(navigate);
       
     } catch (error) {
-      console.error(error?.response?.data);
-      window.alert(error?.response?.data);
+      console.error(error.response.data);
+      window.alert(error.response.data);
     }
   };
 
@@ -76,7 +76,7 @@ export default function SignupPage() {
             <input
             className="input"
               name="password"
-              type="urrent-password"
+              type="password"
               value={form.password}
               onChange={onChange}
               required

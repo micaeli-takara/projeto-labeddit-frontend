@@ -1,15 +1,15 @@
 export const goToLogin = (navigate) => {
-    navigate("/")
-}
+  navigate("/");
+};
 
 export const goToSignup = (navigate) => {
-    navigate("/signup")
-}
+  navigate("/signup");
+};
 
 export const goToPosts = (navigate) => {
-    navigate("/posts")
-}
+  navigate("/posts");
+};
 
-export const goToComments = (navigate) => {
-    navigate("/posts/:id/comments")
-}
+export const goToComments = (navigate, postId) => {
+  navigate(`/posts/${postId}/comments`);
+};
