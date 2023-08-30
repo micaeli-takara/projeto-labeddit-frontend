@@ -10,6 +10,6 @@ export const goToPosts = (navigate) => {
   navigate("/posts");
 };
 
-export const goToComments = (navigate, postId) => {
-  navigate(`/posts/${postId}/comments`);
+export const goToComments = (navigate, id) => {
+  navigate(`/comments/${id}/posts`);
 };
