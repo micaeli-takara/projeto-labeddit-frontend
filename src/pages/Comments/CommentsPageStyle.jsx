@@ -20,7 +20,9 @@ export const ContainerComment = styled.form`
     background: #ededed;
   }
 
-  input {
+  textarea {
+    width: 100%;
+    height: 131px;
     border: none;
     background-color: #ededed;
     padding: 1.5rem;

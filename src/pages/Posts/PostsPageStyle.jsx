@@ -20,7 +20,7 @@ export const ContainerPost = styled.form`
     background: #ededed;
   }
 
-  input {
+  textarea {
     border: none;
     background-color: #ededed;
     padding: 1.5rem;
@@ -29,6 +29,8 @@ export const ContainerPost = styled.form`
     font-family: IBM Plex Sans;
     font-size: 18px;
     font-weight: 400;
+    width: 100%;
+    height: 131px;
   }
 `;
 

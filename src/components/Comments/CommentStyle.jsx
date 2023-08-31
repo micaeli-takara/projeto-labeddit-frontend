@@ -8,6 +8,7 @@ export const ContainerComment = styled.div`
     flex-direction: column;
     justify-content: space-around;
     padding: 1rem;
+    word-wrap: break-word;
 `;
 
 export const TitleAuthor = styled.p`

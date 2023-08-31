@@ -1,26 +1,23 @@
-import { useParams } from "react-router-dom";
-import Post from "../../components/Posts/Post"; // Importe o componente Post
+import Post from "../../components/Posts/Post";
 import { ColoredLine } from "../Posts/PostsPageStyle";
 import {
   ContainerCommentsPage,
   ContainerComment,
   ButtonPost,
 } from "./CommentsPageStyle";
-import axios from "axios";
-import { BASE_URL } from "../../constants/url";
-import { useEffect, useState } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import Comment from "../../components/Comments/Comment";
-import useForm from "../../hooks/useForm";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../constants/url";
 
 export default function CommentsPage() {
   useProtectedPage();
   const { id } = useParams();
   const [comment, setComment] = useState([]);
-  const [posts, setPost] = useState([]);
-  const { form, onChange, cleanForm } = useForm({
-    content: "",
-  });
+  const { form, onChange, cleanForm, posts } = useContext(GlobalContext);
 
   const getPostById = posts.find((post) => post.id === id);
 
@@ -31,20 +28,8 @@ export default function CommentsPage() {
           Authorization: window.localStorage.getItem("token"),
         },
       });
+      console.log(response.data);
       setComment(response.data);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-  const getPosts = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/posts/`, {
-        headers: {
-          Authorization: window.localStorage.getItem("token"),
-        },
-      });
-      setPost(response.data);
     } catch (error) {
       console.log(error.response);
     }
@@ -74,7 +59,6 @@ export default function CommentsPage() {
 
   useEffect(() => {
     getComment();
-    getPosts();
   }, []);
 
   return (
@@ -82,20 +66,20 @@ export default function CommentsPage() {
       <Post postagens={getPostById} />
       <ContainerComment>
         <div className="ContainerComment">
-        <input
-          type="text"
-          placeholder="Escreva seu post..."
-          name="content"
-          value={form.content}
-          onChange={onChange}
-        />
+          <textarea
+            type="text"
+            placeholder="Escreva seu post..."
+            name="content"
+            value={form.content}
+            onChange={onChange}
+          />
         </div>
         <ButtonPost onClick={addNewComment}>Responder</ButtonPost>
       </ContainerComment>
       <ColoredLine />
-      {comment.map((commentItem, index) => (
-        <Comment key={index} comentarios={commentItem} />
-      ))}
+      {comment.map((commentItem, index) => {
+        return <Comment key={index} comentarios={commentItem} />;
+      })}
     </ContainerCommentsPage>
   );
 }
