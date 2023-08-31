@@ -4,14 +4,13 @@ import {
   ContainerHeaderComments,
 } from "./HeaderStyle";
 import LogoLabedditMini from "../../../src/assets/LogoLabedditMini.svg";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ImgBackPosts from "../../../src/assets/ImgBackPost.svg";
 import { goToLogin, goToPosts } from "../../routes/coordinator";
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
-  const {id} = useParams();
 
   const Logout = () => {
     window.localStorage.removeItem("token");

@@ -9,6 +9,7 @@ export const ContainerPosts = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
+    word-wrap: break-word;
 `;
 
 export const TitleAuthor = styled.p`
