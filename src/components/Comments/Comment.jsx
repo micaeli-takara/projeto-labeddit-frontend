@@ -1,5 +1,5 @@
-import ImgLike from "../../../src/assets/ImgLike.svg"
-import ImgDislike from "../../../src/assets/ImgDislike.svg"
+import ImgLike from "../../../src/assets/LikeColor.svg"
+import ImgDislike from "../../../src/assets/DislikeColor.svg"
 import { ContainerComment, SectionLikeDislikeComment, SectionComment, TitleAuthor } from "./CommentStyle"
 
 export default function Comment({ comentarios }) {
