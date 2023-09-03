@@ -39,10 +39,6 @@ export const SectionLikeDislikeComment = styled.div`
     transition: filter 0.3s ease-in-out;
   }
 
-  .LikeButton.active {
-    filter: brightness(1.5); /* Ou outro estilo que você deseja aplicar quando o botão estiver ativo */
-  }
-
   button {
     border: none;
     background-color: transparent;
@@ -77,7 +73,4 @@ export const SectionLikeDislikeComment = styled.div`
     cursor: pointer;
   }
 
-  .RedFilter {
-    filter: brightness(0.6) sepia(1) hue-rotate(180deg) saturate(5);
-  }
 `;
