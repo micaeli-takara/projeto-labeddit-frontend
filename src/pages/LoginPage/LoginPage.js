@@ -2,10 +2,17 @@ import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
-import { goToPosts } from "../../routes/coordinator";
+import { goToPosts, goToSignup } from "../../routes/coordinator";
+import {
+    ButtonsContainer,
+    ColoredLine,
+    Form,
+    Logo,
+    Main,
+} from "./LoginStyle";
+import logo from "../../assets/LogoLabeddit.svg";
 
 export default function LoginPage() {
-
     const navigate = useNavigate();
     const { form, onChange, cleanForm } = useForm({
         email: "",
@@ -31,28 +38,48 @@ export default function LoginPage() {
     };
 
     return (
-        <div>
-            <form onSubmit={Login}>
-                <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    name="password"
-                    type="password"
-                    value={form.password}
-                    onChange={onChange}
-                    required
-                />
-                <button
-                    type="submit"
-                >
-                    Continuar
-                </button>
-            </form>
-        </div>
+        <Main>
+            <Logo>
+                <img src={logo} alt="Logo da Labeddit" />
+                <p>O projeto de rede social da Labenu</p>
+            </Logo>
+            <Form onSubmit={Login}>
+                <div className="input-container">
+                    <input
+                        name="email"
+                        type="email"
+                        value={form.email}
+                        onChange={onChange}
+                        required
+                    />
+                    <label className={form.email ? "active" : ""}>E-mail</label>
+                </div>
+                <div className="input-container">
+                    <input
+                        name="password"
+                        type="password"
+                        value={form.password}
+                        onChange={onChange}
+                        required
+                    />
+                    <label className={form.password ? "active" : ""}>Senha</label>
+                </div>
+                <ButtonsContainer>
+                    <button
+                        type="submit"
+                        className="ButtonContinue"
+                    >
+                        Continuar
+                    </button>
+                    <ColoredLine />
+                    <button
+                        className="ButtonCreateCount"
+                        onClick={() => goToSignup(navigate)}
+                    >
+                        Criar uma conta!
+                    </button>
+                </ButtonsContainer>
+            </Form>
+        </Main>
     )
 }

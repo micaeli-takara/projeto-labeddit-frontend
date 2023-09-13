@@ -1,19 +1,36 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "../../context/GlobalContext"
-import Post from "../../components/Post"
 import useProtectedPage from "../../hooks/useProtectedPage";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import useForm from "../../hooks/useForm";
+import {
+    ButtonPost,
+    ContainerPost,
+    ContainerPostPage,
+    ColoredLine,
+} from "./PostsStyle";
+import Post from "../../components/Post/Post";
 
 export default function PostsPage() {
-    useProtectedPage();
+    useProtectedPage()
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const { posts, setPosts } = useContext(GlobalContext)
+    const [remainingChars, setRemainingChars] = useState(480);
+    const { posts, setPosts, getPosts } = useContext(GlobalContext)
     const { form, onChange, cleanForm } = useForm({
         content: "",
     });
+
+    useEffect(() => {
+        getPosts();
+    }, []);
+
+    useEffect(() => {
+        const remaining = 480 - form.content.length;
+        setRemainingChars(remaining);
+    }, [form.content]);
+
 
     const handleDeletePost = async (postId) => {
         setIsLoading(true);
@@ -34,6 +51,10 @@ export default function PostsPage() {
     };
 
     const addNewPost = async () => {
+        if (remainingChars < 0) {
+            alert("Limite de caracteres excedido");
+            return;
+        }
         try {
             const body = {
                 content: form.content,
@@ -47,33 +68,45 @@ export default function PostsPage() {
             setPosts();
             cleanForm();
         } catch (error) {
+            setError(error);
             console.log(error.response);
         }
     };
 
     return (
-        <div>
-            <form>
-                <textarea
+        <ContainerPostPage>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                addNewPost();
+                getPosts();
 
-                    placeholder="Escreva seu post..."
-                    name="content"
-                    value={form.content}
-                    onChange={onChange} />
-                <button onClick={addNewPost}>Postar</button>
+                if (remainingChars >= 0) {
+                    cleanForm();
+                }
+            }}>
+                <ContainerPost>
+                    <textarea
+                        placeholder="Escreva seu post..."
+                        name="content"
+                        value={form.content}
+                        onChange={onChange}
+                        required
+                    />
+                    <p>{remainingChars} caracteres restantes</p>
+                    <ButtonPost type="submit">Postar</ButtonPost>
+                </ContainerPost>
             </form>
+            <ColoredLine />
             {isLoading && <p>Carregando...</p>}
-            <div>
-                {posts.map((post, index) => {
-                    return (
-                        <Post
-                            key={index}
-                            post={post}
-                            onDelete={handleDeletePost}
-                        />
-                    );
-                })}
-            </div>
-        </div>
+            {posts.map((post, index) => {
+                return (
+                    <Post
+                        key={index}
+                        post={post}
+                        onDelete={handleDeletePost}
+                    />
+                );
+            })}
+        </ContainerPostPage>
     )
 }
