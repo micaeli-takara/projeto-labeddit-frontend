@@ -1,41 +1,44 @@
 import styled from "styled-components";
 
-export const ContainerCommentsPage = styled.div`
+export const ContainerPostPage = styled.div`
   background-color: #f0f0f0;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 20px;
 `;
 
-export const ContainerComment = styled.div`
+export const ContainerPost = styled.div`
   background-color: white;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-
-  textarea {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-    height: 131px;
-
-    &:focus {
-      border-color: #ff6a8a;
-      box-shadow: 0px 0px 5px rgba(255, 106, 138, 0.5);
-    }
-  }
+  gap: 20px;
 
   p {
+    display: flex;
     align-self: flex-end;
     font-size: 12px;
     font-family: "Noto Sans", sans-serif;
-  }`
+  }
+  
+  textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+  width: 100%;
+  height: 131px;
+
+  &:focus {
+    border-color: #ff6a8a;
+    box-shadow: 0px 0px 5px rgba(255, 106, 138, 0.5); 
+  }
+}
+`;
 
 export const ButtonPost = styled.button`
   color: white;
@@ -61,7 +64,8 @@ export const ButtonPost = styled.button`
       rgba(254, 114, 79, 0.95) 50%,
       rgba(249, 178, 78, 0.98) 100%
     );
-  }`
+  }
+`;
 
 export const ColoredLine = styled.hr`
   background: rgb(255, 100, 137);
@@ -74,4 +78,4 @@ export const ColoredLine = styled.hr`
   height: 1px;
   border: none;
   margin: 1rem 0;
-`
+`;
