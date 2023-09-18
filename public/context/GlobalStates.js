@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import axios from "axios";
 import { BASE_URL } from "../constants/url";
+import Loading from "../components/Loading/LoadingPage/Loading";
+
 
 export default function GlobalStates(props) {
     const [posts, setPosts] = useState([]);
@@ -16,8 +18,10 @@ export default function GlobalStates(props) {
                 },
             });
             setPosts(response.data);
+            setIsLoading(true)
         } catch (error) {
             setError(error);
+            setIsLoading(false)
             console.error(error.response?.data || "Erro desconhecido");
         }
     };
@@ -31,7 +35,7 @@ export default function GlobalStates(props) {
     return (
         <GlobalContext.Provider value={context}>
             {error ? (
-                <p>Ocorreu um erro: {error.message}</p>
+                <Loading />
             ) : (
                 props.children
             )}

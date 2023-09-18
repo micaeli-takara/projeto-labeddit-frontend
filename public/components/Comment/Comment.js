@@ -148,28 +148,27 @@ export default function Comment({ comment, onDelete, comments, setComments }) {
             </div>
             <SectionComment>{comment.content}</SectionComment>
             <SectionLikeDislikeComment>
-                <div className="like-dislike">
-                    <button onClick={() => handleLikeDislikeComment(true)}>
-                        {isLoading ? (
-                            <LoadingRole/>
-                        ) : isLiked ? (
-                            <img src={ImageLikeAtivado} alt="like" />
-                        ) : (
-                            <img src={ImageLikeDesativado} alt="like" />
-                        )}
-                    </button>
-                    <p className="total-likes">{totalLikes}</p>
-                    <button onClick={() => handleLikeDislikeComment(false)}>
-                        {isLoading ? (
-                            <LoadingRole/>
-                        ) : isDisliked ? (
-                            <img src={ImageDislikeAtivado} alt="like" />
-                        ) : (
-                            <img src={ImageDislikeDesativado} alt="like" />
-                        )}
-                    </button>
+                <div>
+                    {isLoading && <LoadingRole />}
+                    <div className="like-dislike">
+                        <button onClick={() => handleLikeDislikeComment(true)}>
+                            {isLiked ? (
+                                <img src={ImageLikeAtivado} alt="like" />
+                            ) : (
+                                <img src={ImageLikeDesativado} alt="like" />
+                            )}
+                        </button>
+                        <p className="total-likes">{totalLikes}</p>
+                        <button onClick={() => handleLikeDislikeComment(false)}>
+                            {isDisliked ? (
+                                <img src={ImageDislikeAtivado} alt="like" />
+                            ) : (
+                                <img src={ImageDislikeDesativado} alt="like" />
+                            )}
+                        </button>
+                    </div>
                 </div>
             </SectionLikeDislikeComment>
         </ContainerComment>
     )
-}
+};
