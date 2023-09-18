@@ -26,13 +26,9 @@
 
         useEffect(() => {
             getPosts();
-        }, []);
-
-        useEffect(() => {
             const remaining = 480 - form.content.length;
             setRemainingChars(remaining);
         }, [form.content]);
-
 
         const handleDeletePost = async (postId) => {
             setIsLoading(true);
@@ -68,7 +64,7 @@
                     },
                 });
                 window.localStorage.setItem("token", response.data.output.token);
-                setPosts();
+                setPosts()
                 cleanForm();
                 setIsLoading(true);
             } catch (error) {
@@ -88,8 +84,7 @@
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         addNewPost();
-                        getPosts();
-                        setIsLoading(true);
+                      
                         if (remainingChars >= 0) {
                             cleanForm();
                         }

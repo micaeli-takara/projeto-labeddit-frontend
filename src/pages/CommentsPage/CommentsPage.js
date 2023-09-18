@@ -31,9 +31,6 @@ export default function CommentsPage() {
     useEffect(() => {
         getComments();
         getPosts();
-    }, []);
-
-    useEffect(() => {
         const remaining = 480 - form.content.length;
         setRemainingChars(remaining);
     }, [form.content]);
@@ -43,7 +40,7 @@ export default function CommentsPage() {
             setIsLoading(false)
             alert("Limite de caracteres excedido");
             return;
-        }
+        } 
         try {
             const body = {
                 content: form.content,
@@ -108,7 +105,6 @@ export default function CommentsPage() {
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     addNewComment();
-                    setIsLoading(true);
                 }}>
                     <ContainerComment>
                         <textarea
