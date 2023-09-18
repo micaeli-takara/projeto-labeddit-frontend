@@ -1,5 +1,18 @@
 import styled from "styled-components"; 
 
+export const FullScreenWrapper = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(255, 255, 255, 0.8);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 999;
+`;
+
 export const ContainerPosts = styled.div`
   border-radius: 12px;
   border: 1px solid #e0e0e0;

@@ -157,27 +157,28 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
             </div>
             <SectionPost>{post?.content}</SectionPost>
             <SectionLikeDislikeComment>
-                <div className="like-dislike">
-                    <button onClick={() => handleLikeDislike(true)}>
-                        {isLoading ? (
-                            <LoadingRole />
-                        ) : isLiked ? (
-                            <img src={ImageLikeAtivado} alt="like" />
-                        ) : (
-                            <img src={ImageLikeDesativado} alt="like" />
-                        )}
-                    </button>
-                    <p className="total-likes">{post?.likes - post?.dislikes}</p>
-                    <button onClick={() => handleLikeDislike(false)}>
-                        {isLoading ? (
-                            <LoadingRole />
-                        ) : isDisliked ? (
-                            <img src={ImageDislikeAtivado} alt="like" />
-                        ) : (
-                            <img src={ImageDislikeDesativado} alt="like" />
-                        )}
-                    </button>
+                <div>
+                    {isLoading && <LoadingRole />}
+                    <div className="like-dislike">
+
+                        <button onClick={() => handleLikeDislike(true)}>
+                            {isLiked ? (
+                                <img src={ImageLikeAtivado} alt="like" />
+                            ) : (
+                                <img src={ImageLikeDesativado} alt="like" />
+                            )}
+                        </button>
+                        <p className="total-likes">{post?.likes - post?.dislikes}</p>
+                        <button onClick={() => handleLikeDislike(false)}>
+                            {isDisliked ? (
+                                <img src={ImageDislikeAtivado} alt="like" />
+                            ) : (
+                                <img src={ImageDislikeDesativado} alt="like" />
+                            )}
+                        </button>
+                    </div>
                 </div>
+
                 {!isCommentPage && (
                     <div className="comment">
                         <button onClick={() => goToComments(navigate, post.id)}>
@@ -191,5 +192,5 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
                 )}
             </SectionLikeDislikeComment>
         </ContainerPosts>
-    );
-}
+    )
+};
