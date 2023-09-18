@@ -12,6 +12,7 @@ import {
     SectionComment,
     TitleAuthor,
 } from "./CommentStyle";
+import LoadingRole from "../Loading/LoadingLike/LoadingRole";
 
 export default function Comment({ comment, onDelete, comments, setComments }) {
     const [error, setError] = useState(null);
@@ -150,7 +151,7 @@ export default function Comment({ comment, onDelete, comments, setComments }) {
                 <div className="like-dislike">
                     <button onClick={() => handleLikeDislikeComment(true)}>
                         {isLoading ? (
-                            <div>Loading...</div>
+                            <LoadingRole/>
                         ) : isLiked ? (
                             <img src={ImageLikeAtivado} alt="like" />
                         ) : (
@@ -160,7 +161,7 @@ export default function Comment({ comment, onDelete, comments, setComments }) {
                     <p className="total-likes">{totalLikes}</p>
                     <button onClick={() => handleLikeDislikeComment(false)}>
                         {isLoading ? (
-                            <div>Loading...</div>
+                            <LoadingRole/>
                         ) : isDisliked ? (
                             <img src={ImageDislikeAtivado} alt="like" />
                         ) : (

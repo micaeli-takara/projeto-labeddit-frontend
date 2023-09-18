@@ -13,7 +13,7 @@ import {
 } from "./LoginStyle";
 import logo from "../../assets/LogoLabeddit.svg";
 import { useState } from "react";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../components/Loading/LoadingPage/Loading";
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -37,10 +37,9 @@ export default function LoginPage() {
             goToPosts(navigate)
 
         } catch (error) {
+            setIsLoading(false);
             console.error(error?.response?.data);
             window.alert(error?.response?.data)
-        } finally {
-            setIsLoading(false);
         }
     };
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"; 
 
 export const ContainerPosts = styled.div`
   border-radius: 12px;

@@ -17,6 +17,8 @@ import {
     SectionPost,
     TitleAuthor,
 } from "./PostStyle";
+import LoadingRole from "../Loading/LoadingLike/LoadingRole";
+
 
 export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
     const navigate = useNavigate();
@@ -25,7 +27,7 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
     const [isLiked, setIsLiked] = useState(true);
     const [isDisliked, setIsDisliked] = useState(false);
     const [totalLikes, setTotalLikes] = useState(0);
-    const { posts, setPosts, getPost } = useContext(GlobalContext)
+    const { posts, setPosts } = useContext(GlobalContext)
 
     const atualizaPost = async (id, likeAction, isLiked) => {
         posts.forEach(element => {
@@ -58,7 +60,7 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
     const handleLikeDislike = async (likeAction) => {
         setIsLoading(true);
         try {
-            const response = await axios.put(
+            await axios.put(
                 `${BASE_URL}/posts/${post.id}/like`,
                 { like: likeAction },
                 {
@@ -102,6 +104,8 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
         } catch (error) {
             setError(error);
             console.error(error.response?.data || "Erro desconhecido");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -155,7 +159,9 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
             <SectionLikeDislikeComment>
                 <div className="like-dislike">
                     <button onClick={() => handleLikeDislike(true)}>
-                        {isLiked ? (
+                        {isLoading ? (
+                            <LoadingRole />
+                        ) : isLiked ? (
                             <img src={ImageLikeAtivado} alt="like" />
                         ) : (
                             <img src={ImageLikeDesativado} alt="like" />
@@ -163,24 +169,26 @@ export default function Post({ post, onDelete, isCommentPage, isDeletePage }) {
                     </button>
                     <p className="total-likes">{post?.likes - post?.dislikes}</p>
                     <button onClick={() => handleLikeDislike(false)}>
-                        {isDisliked ? (
+                        {isLoading ? (
+                            <LoadingRole />
+                        ) : isDisliked ? (
                             <img src={ImageDislikeAtivado} alt="like" />
                         ) : (
                             <img src={ImageDislikeDesativado} alt="like" />
                         )}
                     </button>
                 </div>
-                    {!isCommentPage && (
-                        <div className="comment">
-                            <button onClick={() => goToComments(navigate, post.id)}>
-                                <img
-                                    src={ImgComment}
-                                    alt="Comentários da postagem"
-                                />
-                            </button>
-                            <p className="total-comments">{post?.commentsPost}</p>
-                        </div>
-                    )}
+                {!isCommentPage && (
+                    <div className="comment">
+                        <button onClick={() => goToComments(navigate, post.id)}>
+                            <img
+                                src={ImgComment}
+                                alt="Comentários da postagem"
+                            />
+                        </button>
+                        <p className="total-comments">{post?.commentsPost}</p>
+                    </div>
+                )}
             </SectionLikeDislikeComment>
         </ContainerPosts>
     );

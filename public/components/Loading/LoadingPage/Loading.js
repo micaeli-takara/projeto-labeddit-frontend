@@ -1,10 +1,10 @@
 import React from 'react';
-import { LoadingContainer, LoadingRole } from './LoadingStyle';
+import { LoadingContainer, LoadingRoleSection } from './LoadingStyle';
 
 export default function Loading(){
   return (
     <LoadingContainer>
-      <LoadingRole></LoadingRole>
+      <LoadingRoleSection></LoadingRoleSection>
     </LoadingContainer>
   );
 }

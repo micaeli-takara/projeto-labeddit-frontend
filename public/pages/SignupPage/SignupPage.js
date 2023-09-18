@@ -14,7 +14,7 @@ import useForm from "../../hooks/useForm";
 import { BASE_URL } from "../../constants/url";
 import { useState } from "react";
 import Attachment from "../../assets/Attachment.svg";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../components/Loading/LoadingPage/Loading";
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -42,11 +42,11 @@ export default function SignupPage() {
         goToPosts(navigate);
 
       } catch (error) {
+        setIsLoading(false);
         console.error(error.response.data);
       }
-      finally {
-        setIsLoading(false);
-      }
+    }else{
+      setIsLoading(false);
     }
   };
 

@@ -15,12 +15,12 @@ display: flex;
   );
 `;
 
-export const LoadingRole = styled.div`
-  border: 4px solid rgba(255, 255, 255, 0.3);
+export const LoadingRoleSection = styled.div`
+  border: 4px solid rgba(249, 178, 78, 0.8827906162464986);
   border-top: 4px solid #fff;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   animation: spin 2s linear infinite;
 
   @keyframes spin {
