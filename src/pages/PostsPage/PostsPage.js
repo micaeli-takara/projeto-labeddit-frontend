@@ -66,7 +66,7 @@ export default function PostsPage() {
                 },
             });
             window.localStorage.setItem("token", response.data.output.token);
-            setPosts()
+            getPosts()
             cleanForm();
             setIsLoading(true);
         } catch (error) {
@@ -87,6 +87,7 @@ export default function PostsPage() {
                     e.preventDefault();
                     setIsLoading(true)
                     addNewPost();
+                    
                     if (remainingChars >= 0) {
                         cleanForm();
                         getPosts()
