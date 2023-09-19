@@ -1,72 +1,42 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
+# Projeto Labeddit Full Stack
 
 O projeto Labeddit Full Stack é um desafio final do bootcamp Web Full Stack da Labenu, que abrange desenvolvimento em backend e frontend. O foco é criar um aplicativo com design mobile-first, onde consiste em quatro páginas: Login, Signup, Postagens e Comentários. Este projeto utiliza tecnologias como React, React Router, Styled-components, React Context e Axios para integração com a Labeddit Api, onde foram utilizados TypeScript, Knex e Express, e a implementação de funcionalidades como autenticação de usuários e gerenciamento de banco de dados.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+[Clique para conferir o site!](https://projeto-labeddit-micaeli.surge.sh/)
 
-### `npm run build` fails to minify
+# [Link do repositório Back-end!](https://github.com/micaeli-takara/projeto-labeddit-backend)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Gerais
+
+- O site possui 4 páginas: Login, Signup, Postagens e Comentários.
+- O fluxo de trocas de páginas segue o fluxograma proposto.
+
+### Página de Login
+
+- Exibe um formulário de login que inclui campos para o email e senha.
+-  permite ao usuário enviar as informações de login.
+- Um botão "Criar uma conta!" permite ao usuário direcionar para a página de Signup.
+
+### Página de Signup (cadastro)
+
+- Exibe um formulário de cadastro que inclui campos para nome, e-mail, nome de usuário e senha.
+- Um botão "Cadastrar" permite ao usuário criar uma nova conta.
+- Pode haver validação de campos para garantir que as informações sejam inseridas corretamente.
+- Um botão "Entrar" na parte superior da página direciona para a página de Login.
+
+### Página de Postagens
+
+- Exibe uma caixa de texto para realizar uma postagem.
+- Exibe uma lista de postagens feitas por usuários do site.
+- Cada postagem é representada por um card.
+- Cada card de postagem pode incluir o conteúdo, o autor(a), opção de dar like e dislike, o total de likes, um botão para deletar a postagem e outro que redireciona para os comentários.
+- O header pode conter um botão de "Logout" que direciona para a página de Login.
+
+### Página de Comentários
+
+- Exibe a postagem escolhida juntamente com o conteúdo, o autor(a) e a opção de dar like e dislike com o total de likes.
+- Abaixo da postagem, há uma seção de comentários que lista todos os comentários feitos sobre essa postagem.
+- Cada card de comentário pode incluir o conteúdo, o autor(a), opção de dar like e dislike, o total de likes e um botão para deletar.
+Cada comentário é representado por um card.
+- Exibe uma caixa de texto para realizar um comentário na postagem.
+- O header da página pode conter um botão para um "Logout" e um botão para voltar à página de postagens.
