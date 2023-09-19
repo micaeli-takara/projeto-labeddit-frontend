@@ -63,6 +63,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 ### Deployment
 
+O projeto Labeddit Full Stack é um desafio final do bootcamp Web Full Stack da Labenu, que abrange desenvolvimento em backend e frontend. O foco é criar um aplicativo com design mobile-first, onde consiste em quatro páginas: Login, Signup, Postagens e Comentários. Este projeto utiliza tecnologias como React, React Router, Styled-components, React Context e Axios para integração com a Labeddit Api, onde foram utilizados TypeScript, Knex e Express, e a implementação de funcionalidades como autenticação de usuários e gerenciamento de banco de dados.
+
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
